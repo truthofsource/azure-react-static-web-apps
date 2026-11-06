@@ -4,7 +4,7 @@ The actual loader validates apiBaseUrl, apiScope, entraTenantId, entraClientId a
 
 The public JSON is not a secret store. Entra tenant/client identifiers are configuration, not passwords; this project still uses fictional values for privacy. Vite environment variables embedded into a build are also browser-visible. Azure SWA application settings do not magically rewrite already-built JavaScript variables; the runtime JSON is an explicit application mechanism.
 
-The included MSAL configuration and provider shell show the area that still needs testing with real services: load destination config first, initialize PublicClientApplication, handle any redirect response and provide the instance to MsalProvider. A real registration must permit the exact SPA redirect/logout origin and the correct API delegated scope. The preview does not initialize this flow and no real sign-in was tested.
+The Microsoft sign-in example loads the environment settings first, starts the MSAL library, handles the return from sign-in and makes the signed-in session available to the React application. The real Microsoft registration must allow the correct website return/logout address and API permission. The preview does not start this flow, and real sign-in was not tested for this example.
 
 Backend token validation, current roles/record access and API CORS remain independent. sessionStorage is not a defense against script execution in the origin. CSP, dependency control and avoiding token/error leakage remain important.
 

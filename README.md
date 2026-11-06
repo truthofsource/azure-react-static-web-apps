@@ -141,7 +141,7 @@ Static assets scale differently from API/database traffic. Keep code splitting, 
 | [Runtime and authentication](docs/RUNTIME-AND-AUTH.md) | Public config, load order and optional MSAL integration |
 | [Routing and headers](docs/ROUTING-AND-HEADERS.md) | SPA fallback, exclusions, CSP and cache settings |
 | [Commands](docs/COMMANDS.md) | Local build/tests and expected results |
-| [Source map](docs/SOURCE-MAP.md) | Actual source and explicit adaptations |
+| [Source map](docs/SOURCE-MAP.md) | Where the code came from and what changed for this example |
 | [Troubleshooting](docs/OPERATIONS.md) | Configuration, sign-in, fetch, CORS and deep-link failures |
 | [Terraform](infra/README.md) | Static hosting and optional domain resources |
 | [Validation](docs/VALIDATION.md) | Local results versus untested testing in the hosted environment |
