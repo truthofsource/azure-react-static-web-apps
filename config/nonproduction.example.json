@@ -1,0 +1,7 @@
+{
+  "apiBaseUrl": "https://func-example-api-nonproduction.azurewebsites.net",
+  "apiScope": "api://00000000-0000-4000-8000-000000000001/esi-workforce-api-nonproduction/access_as_user",
+  "entraAuthority": "https://login.microsoftonline.com/00000000-0000-4000-8000-000000000001",
+  "entraClientId": "00000000-0000-4000-8000-000000000002",
+  "entraTenantId": "00000000-0000-4000-8000-000000000001"
+}

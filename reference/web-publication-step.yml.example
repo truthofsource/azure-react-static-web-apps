@@ -1,0 +1,11 @@
+# Inert reference excerpt; replace placeholder pin and supply authorized inputs
+# only in a separately reviewed publisher. This file is not a GitHub workflow.
+- name: Publish selected prebuilt web assets
+  uses: Azure/static-web-apps-deploy@<reviewed-immutable-commit>
+  with:
+    azure_static_web_apps_api_token: ${{ steps.swa.outputs.token }}
+    action: upload
+    app_location: web-release
+    api_location: ''
+    output_location: ''
+    skip_app_build: true

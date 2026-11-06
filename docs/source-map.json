@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "reviewedDate": "2026-11-06",
+  "files": [
+    {
+      "source": "apps/web/src/lib/runtimeConfig.ts",
+      "sourceSha256": "c008878566f409c170050a90da2b53ef03f7642e5f15685045acc5eb10af07e0",
+      "publicFile": "frontend/src/lib/runtimeConfig.ts",
+      "changes": "Neutral identity/domain/product labels; public adaptation described in SOURCE-MAP"
+    },
+    {
+      "source": "apps/web/src/lib/apiClient.ts",
+      "sourceSha256": "30e89a1deaae65da9e753fe202751998ab678ac24800f76057f6ff0bef692b88",
+      "publicFile": "frontend/src/lib/apiClient.ts",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "apps/web/src/lib/frontendExperience.ts",
+      "sourceSha256": "6f9723a8b623d964097fdb796beb21ad9082009990cc344ca0c7f0ab34f9a1be",
+      "publicFile": "frontend/src/lib/frontendExperience.ts",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "apps/web/src/auth/msalConfig.ts",
+      "sourceSha256": "2800d1a50c98c2f049721fd82e5594403bdc402bb0127d74bb325a3e78c78278",
+      "publicFile": "frontend/src/auth/msalConfig.ts",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "apps/web/public/staticwebapp.config.json",
+      "sourceSha256": "cd1585f9378cc3140ae1328e16c5489cb98fdf9e9cb416a99286dd6b8a5aae51",
+      "publicFile": "frontend/public/staticwebapp.config.json",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "apps/web/scripts/test-api-client.mjs",
+      "sourceSha256": "c4f6992971606bf1bf62cd5da56948f40ce36fc97f25ede1dd8dfb8e20e39e08",
+      "publicFile": "frontend/scripts/test-api-client.mjs",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "apps/web/scripts/test-frontend-experience.mjs",
+      "sourceSha256": "4f4b0c5b383a9e4d5c2ac0c5fe98afa87ecd80b18ce4354a4c44b56549a51a32",
+      "publicFile": "frontend/scripts/test-frontend-experience.mjs",
+      "changes": "Keep original hostname/path routing section; omit unrelated full-portal page checks; neutral domains"
+    },
+    {
+      "source": "apps/web/tsconfig.json",
+      "sourceSha256": "ad28d132ee48d6e23917cf5827cace785d0fc01a44ca68b0dda51cc8c3fd3f52",
+      "publicFile": "frontend/tsconfig.json",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "apps/web/tsconfig.app.json",
+      "sourceSha256": "5864ed75d5bc3bb74d96ab1e0d0cd526f1afaa0eb21bd1095a99cbc6800cc4b5",
+      "publicFile": "frontend/tsconfig.app.json",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "apps/web/tsconfig.node.json",
+      "sourceSha256": "e0f1936992f77a707102795e8ea311ae74cb54de87b221bb32b44055af66ff7e",
+      "publicFile": "frontend/tsconfig.node.json",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "scripts/web_runtime_config.py",
+      "sourceSha256": "5c149d89809531f38bfbf9f6a3802e3ff0c3ff8d88a813750f60af134981fb4c",
+      "publicFile": "reference/web_runtime_config.py",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "scripts/test_web_runtime_config.py",
+      "sourceSha256": "2811752ecfb481a0b81f5c9f4e8f4ba381fb3fea1f7c1b466fba29436465386e",
+      "publicFile": "reference/test_web_runtime_config.py",
+      "changes": "Neutral identity/domain/product labels; source behavior retained"
+    },
+    {
+      "source": "infra/modules/workforce-portal/main.tf",
+      "sourceSha256": "22f019ab973ad6096d9bcf295030f70bd91988352f66a03383d8e99e7af97b77",
+      "publicFile": "infra/main.tf",
+      "changes": "Neutral identity/domain/product labels; public adaptation described in SOURCE-MAP"
+    },
+    {
+      "source": "infra/modules/workforce-portal/variables.tf",
+      "sourceSha256": "882d96334d912834909bd0ecf04b1dd4444ada4c0b122abfb7bcfc54ace16b38",
+      "publicFile": "infra/variables.tf",
+      "changes": "Neutral identity/domain/product labels; public adaptation described in SOURCE-MAP"
+    },
+    {
+      "source": "infra/modules/workforce-portal/outputs.tf",
+      "sourceSha256": "0675968ccebcad4c3dc7ba505cfd2aed3942cb6c3108be8162a5c3a378985b8b",
+      "publicFile": "infra/outputs.tf",
+      "changes": "Neutral identity/domain/product labels; public adaptation described in SOURCE-MAP"
+    },
+    {
+      "source": "infra/modules/workforce-portal/versions.tf",
+      "sourceSha256": "b88fcfef92a8571378d3376a6d7e2b7478df1fcaaecfcf56b8ec5e2c831a6118",
+      "publicFile": "infra/versions.tf",
+      "changes": "Neutral identity/domain/product labels; public adaptation described in SOURCE-MAP"
+    }
+  ],
+  "identifyingValues": "Domains and tenant/client IDs replaced consistently with public examples",
+  "publicHardening": "Browser runtime validator additionally rejects authority credentials and nondefault API ports; original private source unchanged",
+  "minimalReactShell": "New public reference shell; real business components and records excluded",
+  "publicationEvidence": {
+    "sourceArea": ".github/workflows/workforce-production-release.yml",
+    "sourceSha256": "b71f477067f56aa676254fde030fd16963a4fa6025180f917a10bc4749c2497a",
+    "publicFile": "reference/web-publication-step.yml.example",
+    "changes": "Only prebuilt-upload input shape retained; immutable action pin placeholder and token reference are inert; real token retrieval/targets omitted"
+  }
+}

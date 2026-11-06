@@ -1,0 +1,16 @@
+node_modules/
+frontend/dist/
+.terraform/
+*.tfstate*
+*.tfplan*
+*.tfvars
+!*.tfvars.example
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.release/
+*.pem
+*.pfx
+*.p12

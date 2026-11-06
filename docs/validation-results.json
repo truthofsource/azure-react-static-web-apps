@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-06",
+  "nodeUnitCases": 5,
+  "originalPythonCases": 5,
+  "stagingPythonCases": 4,
+  "originalJavaScriptCheckScripts": 2,
+  "terraformMockTests": 2,
+  "typescriptBuild": true,
+  "actionlint": true,
+  "trivySecretScanFindings": 0,
+  "browser": {
+    "desktop": true,
+    "mobile390": true,
+    "reactNavigation": true,
+    "deepLinkRefresh": true,
+    "threeLocalChecks": true,
+    "invalidConfigVisible": true,
+    "reloadRecovery": true,
+    "browserErrors": 0,
+    "externalRequests": 0,
+    "azureSwaHeadersAppliedByPreview": false,
+    "liveSignInTested": false
+  },
+  "overlay": {
+    "bundlePreservedAcrossDestinations": true,
+    "runtimeOverlaysDiffer": true,
+    "nonproduction": {
+      "compiledAndStaticFilesPreserved": 5,
+      "bundleManifestSha256": "6e9289f63b6de0acdc032526edeaffdf10788f7e374e8dd0b6dd24445459c1f1",
+      "runtimeConfigSha256": "3676838d8bc9d4fd9bd7b6f2bcd5ba8eba6a8444023ee2870c899e623af20656",
+      "published": false
+    },
+    "production": {
+      "compiledAndStaticFilesPreserved": 5,
+      "bundleManifestSha256": "6e9289f63b6de0acdc032526edeaffdf10788f7e374e8dd0b6dd24445459c1f1",
+      "runtimeConfigSha256": "565144209206bf13cd6e0b8ca23144e31062b228e563379f5c481cbfe127784b",
+      "published": false
+    }
+  },
+  "azureDeployed": false,
+  "actionsDispatched": false
+}
