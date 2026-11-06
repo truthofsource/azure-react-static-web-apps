@@ -1,5 +1,7 @@
 # Build once, validate the destination, publish prebuilt assets
 
+**Terms used here:** An artifact is a file produced for a release, such as an application ZIP or container image. OIDC lets trusted systems exchange proof of identity; the release pipeline uses it to request short-lived Azure access.
+
 The actual frontend build command is TypeScript project checking followed by Vite build. This sample retains that shape and selected locked React/Vite/MSAL versions while omitting business UI, PDF dependencies and the platform-specific job-title build plugin.
 
 The actual production publisher uploads a selected prebuilt directory using Azure/static-web-apps-deploy with skip_app_build=true, empty api_location and empty output_location. [Inert publication excerpt](../reference/web-publication-step.yml.example). Its action commit is intentionally a placeholder for separate reviewed pinning; the file is not an active workflow or an authorization bypass.
@@ -12,4 +14,4 @@ The same compiled JS/CSS can be promoted while a validated same-origin JSON file
 
 The compiled/static bundle is preserved while runtime JSON differs. Track those identities separately; do not claim every final deployed byte is identical when environment overlays change. Real source/archive selection and exact release authorization still belong to the trusted publisher.
 
-This workflow validates/builds/stages locally only. It does not retrieve a SWA token, publish, modify DNS, start an API or test a live tenant. Future real publication needs exact target/source/artifact selection and hosted acceptance.
+This workflow validates/builds/stages locally only. It does not retrieve a SWA token, publish, modify DNS, start an API or test a live tenant. Future real publication needs exact target/source/artifact selection and testing in the hosted environment.

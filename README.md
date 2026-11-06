@@ -1,6 +1,6 @@
 # Deploying a React Frontend with Azure Static Web Apps
 
-**Build the interface once. Configure it at the destination.**
+**Build the website once, then give each environment its own connection settings.**
 
 [The problem](#the-business-problem) · [The solution](#the-solution) · [What was built](#what-was-built) · [Proof it works](#proof-it-works) · [Commands](docs/COMMANDS.md)
 
@@ -8,17 +8,13 @@
 
 ## The Business Problem
 
-A healthcare-services workforce platform needs a usable frontend for staff and applicants, a separate protected API and repeatable releases across environments. Rebuilding the UI for each destination can introduce differences; misrouted configuration or broken deep links can make a successful upload unusable.
-
-1. **The wrong destination:** static frontend settings can point a tested bundle at the wrong API or Entra application.
-2. **Deep links that fail after refresh:** a client route needs deliberate SPA fallback, while configuration/assets must not silently return index.html.
-3. **Sign-in confused with authorization:** a signed-in browser or hidden button does not grant access to another employee's backend record.
+The platform needs browser pages for staff and applicants, plus a protected server behind them. A release can upload successfully but still point at the wrong server, fail when someone refreshes a page, or mishandle sign-in. Rebuilding the website for each environment can also introduce differences.
 
 ## The Solution
 
-Build the React/TypeScript application with Vite, validate its static-hosting configuration and load destination-owned public settings before initializing identity-dependent code. Publish selected prebuilt assets through Azure Static Web Apps while keeping the Node.js API and its access controls separate.
+Build the React website with Vite and host its files in Azure Static Web Apps. Load each environment’s public server and Microsoft sign-in settings before the application starts. Check page routing, security settings and useful error messages while keeping server permissions separate.
 
-**Business outcome:** Keep the interface consistent between destinations, make API/identity wiring explicit and provide useful failure messages instead of ambiguous fetch/retry errors.
+**Business outcome:** Keep the tested website files consistent between environments and make connection or sign-in problems easier to understand.
 
 ### Actual platform implementation
 
@@ -26,7 +22,7 @@ The project includes actual runtime-configuration validation/loading, MSAL confi
 
 The running React shell is a new minimal public reference. It does not copy employee/applicant screens or business records. Its default preview validates public example settings without initializing MSAL or contacting an API. Two small browser-validator hardenings are recorded separately from the extracted source. [Source map](docs/SOURCE-MAP.md).
 
-The platform's production SWA root selects the Free SKU and keeps existing custom-domain bindings/lifecycle under its environment root. The selected publisher uploads prebuilt assets with skip_app_build=true and leaves api_location empty because the business API is separately hosted. This repository performs no hosted publication. [Deployment process](docs/DEPLOYMENT.md).
+The platform's production SWA root selects the Free SKU and keeps existing custom-domain bindings/lifecycle under its environment root. The selected publisher uploads website files already built and tested with skip_app_build=true and leaves api_location empty because the business API is separately hosted. This repository performs no hosted publication. [Deployment process](docs/DEPLOYMENT.md).
 
 ## Architecture
 
@@ -89,7 +85,7 @@ terraform -chdir=infra validate
 terraform -chdir=infra test
 ```
 
-**Look for:** two mock tests verify Free SKU, default-Off custom-domain activation and explicit domain/delegation inputs. No Azure resource or DNS change occurs.
+**Look for:** two tests using simulated cloud responses verify Free SKU, default-Off custom-domain activation and explicit domain/delegation inputs. No Azure resource or DNS change occurs.
 
 ### 4. Visible browser evidence
 
@@ -117,7 +113,7 @@ For development, run `npm run dev --prefix frontend` and use the printed localho
 1. Build/test the selected lockfile and React source once.
 2. Retain the compiled bundle and its source/artifact evidence.
 3. Validate destination-owned public API/Entra settings and the CSP/configuration contract.
-4. Stage the destination overlay while preserving compiled JS/CSS and reviewed static files.
+4. Stage the environment-specific settings file while preserving compiled JS/CSS and reviewed static files.
 5. In the real publisher, obtain the authorized SWA deployment token, mask it and upload prebuilt files with build skipped; do not copy credentials into the frontend.
 6. Verify actual hosted navigation, headers, config cache behavior and authorized sign-in/API access separately. Preserve API workers/switches; a web-only publication does not activate them.
 
@@ -130,25 +126,25 @@ Compiled assets can be identical across environments while the destination JSON 
 - SWA deployment tokens, browser access tokens and Azure deployment identities have different roles.
 - CORS and CSP control different browser behaviors. Neither grants backend record access.
 - A hostname called private_portal describes a staff entry point, not a private network or confidential JavaScript bundle.
-- Same-origin runtime configuration is fetched without caching; hosted cache/header behavior still needs independent verification.
+- Same-origin settings read when the application starts is fetched without caching; hosted cache/header behavior still needs independent verification.
 
 ## Scaling and Tradeoffs
 
-Static assets scale differently from API/database traffic. Keep code splitting, cache policy, payload size, Entra flow and backend limits distinct. Destination configuration improves promotion consistency but adds a required bootstrap dependency. [Costs, strengths and tradeoffs](docs/SCALING.md).
+Static assets scale differently from API/database traffic. Keep code splitting, cache policy, payload size, Entra flow and backend limits distinct. Destination configuration improves promotion consistency but adds a required required startup step. [Costs, strengths and tradeoffs](docs/SCALING.md).
 
 ## Project Guides
 
 | Guide | Purpose |
 | --- | --- |
 | [Architecture](docs/ARCHITECTURE.md) | Frontend/API/identity boundaries |
-| [Build and deployment](docs/DEPLOYMENT.md) | Prebuilt upload, destination overlay and credential separation |
+| [Build and deployment](docs/DEPLOYMENT.md) | Prebuilt upload, environment-specific settings file and credential separation |
 | [Runtime and authentication](docs/RUNTIME-AND-AUTH.md) | Public config, load order and optional MSAL integration |
 | [Routing and headers](docs/ROUTING-AND-HEADERS.md) | SPA fallback, exclusions, CSP and cache settings |
 | [Commands](docs/COMMANDS.md) | Local build/tests and expected results |
 | [Source map](docs/SOURCE-MAP.md) | Actual source and explicit adaptations |
 | [Troubleshooting](docs/OPERATIONS.md) | Configuration, sign-in, fetch, CORS and deep-link failures |
 | [Terraform](infra/README.md) | Static hosting and optional domain resources |
-| [Validation](docs/VALIDATION.md) | Local results versus untested hosted acceptance |
+| [Validation](docs/VALIDATION.md) | Local results versus untested testing in the hosted environment |
 | [Scaling](docs/SCALING.md) | Asset delivery, dependencies and costs |
 
 ## Cost and Cleanup

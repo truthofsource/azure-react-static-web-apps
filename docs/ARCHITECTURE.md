@@ -6,4 +6,4 @@ Runtime settings load before code that reads identity/API configuration. The act
 
 The actual frontend chooses experiences by hostname/path. This is navigation, not permission: the backend still checks token, role, current account state and exact record access. A public staff-site bundle must not contain employee data or private credentials.
 
-The SWA module owns hosting and optional domain bindings. Backend CORS, Entra app registrations/redirects, API roles, deployment identity, actual publication and hosted acceptance remain separate. Related [Node API deployment](https://github.com/truthofsource/azure-nodejs-api-deployment) and [identity boundaries](https://github.com/truthofsource/cloud-identity-access-automation) show those layers.
+The SWA module owns hosting and optional domain bindings. Backend CORS, Entra app registrations/redirects, API roles, deployment identity, actual publication and testing in the hosted environment remain separate. Related [Node API deployment](https://github.com/truthofsource/azure-nodejs-api-deployment) and [identity boundaries](https://github.com/truthofsource/cloud-identity-access-automation) show those layers.

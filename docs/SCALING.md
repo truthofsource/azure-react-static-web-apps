@@ -2,11 +2,11 @@
 
 | Design | Strength | Tradeoff | Growth response |
 | --- | --- | --- | --- |
-| Static React build | Browser executes prebuilt assets without a frontend app server | Larger JS and dependencies affect first load | Measure payload, code splitting, caching and interaction cost |
-| Destination runtime JSON | Promotes stable compiled assets across environments | Bootstrap now depends on correct, fresh public config | Validate schema, CSP agreement, contract and no-store behavior |
+| Static React build | Browser executes website files already built and tested without a frontend app server | Larger JS and dependencies affect first load | Measure payload, code splitting, caching and interaction cost |
+| Destination runtime JSON | Promotes stable built website files across environments | Bootstrap now depends on correct, fresh public config | Validate schema, CSP agreement, contract and no-store behavior |
 | Separate API | Frontend hosting and business compute scale separately | Cross-origin/CORS/token failures need clear diagnosis | Observe UI, API and database saturation independently |
 | MSAL integration | Uses Entra's browser sign-in/token flow | Redirect/account/session behavior needs real acceptance | Review allowed origins and token scope; minimize token exposure |
-| Hostname/path routing | Supports multiple entry experiences from one application | Navigation labels can be mistaken for access control | Test precedence and require backend record authorization |
+| Hostname/path routing | Supports multiple entry experiences from one application | Navigation labels can be mistaken for access control | Test precedence and require backend permission checks for the specific record |
 | Free SWA source SKU | Matches the selected current hosting configuration | Quotas/features and backend costs still matter | Review actual service limits and workload needs before changing tier |
 
 Static asset distribution is not proof that the API/database can handle the same traffic. Watch browser bundle size, API latency, token acquisition, database pools, storage/key-service calls and backend concurrency as separate limits. A hidden or disabled frontend feature does not change backend permissions.

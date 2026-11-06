@@ -1,5 +1,7 @@
 # Actual implementation and public adaptations
 
+**Terms used here:** Provenance means the record of where a release came from and how it was produced.
+
 | Public area | Relationship |
 | --- | --- |
 | frontend/src/lib/runtimeConfig.ts | Actual loader/validator; neutral labels; two additional public URL hardenings |

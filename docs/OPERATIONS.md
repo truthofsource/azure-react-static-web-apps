@@ -1,5 +1,7 @@
 # Frontend deployment troubleshooting
 
+**Terms used here:** DNS turns a service name into the network address used to reach it.
+
 | Symptom | Investigate | Next step |
 | --- | --- | --- |
 | UI cannot initialize | Missing/invalid runtime JSON, HTML fallback, wrong cache state | Inspect the expected public file and bootstrap error; do not start sign-in with partial config |
