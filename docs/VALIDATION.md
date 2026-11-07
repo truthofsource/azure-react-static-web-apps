@@ -23,3 +23,9 @@ There are 14 unit-test cases plus two original JavaScript check scripts and two 
 The preview does not implement Azure SWA hosting headers or authentication. MSAL integration is type-checked, but real sign-in, token validation, backend permission checks for the specific record, custom domains and hosted cache/CSP behavior remain outside this local acceptance. The manual validation workflow was reviewed but not run on GitHub.
 
 [Machine-readable results](validation-results.json) retain the bundle and overlay hashes. The optional MSAL shell is not initialized by the offline preview.
+
+## Troubleshooting documentation review — November 7, 2026
+
+Added a README incident summary and a linked historical lessons guide, checking the account against the maintained source records. Documentation checks covered local links, complete incident fields, identifying-information patterns, whitespace and preservation of the existing four-step walkthrough. Shared incidents link to the relevant project details; unresolved causes remain explicit.
+
+This was an editorial update. Application code, tests, Terraform, images, workflow definitions and cloud settings were not changed. Existing functional test counts and screenshots above retain their original scope and dates; no application suite, live scan, paid image request, recovery rehearsal or GitHub Actions run was executed for this documentation pass.

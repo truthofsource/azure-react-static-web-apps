@@ -144,6 +144,10 @@ Compiled assets can be identical across environments while the destination JSON 
 
 Static assets scale differently from API/database traffic. Keep code splitting, cache policy, payload size, Entra flow and backend limits distinct. Destination configuration improves promotion consistency but adds a required required startup step. [Costs, strengths and tradeoffs](docs/SCALING.md).
 
+## Troubleshooting Lessons
+
+A frontend expected routes absent from its deployed backend, then displayed a misleading JSON parsing error. Response handling and release compatibility had to be checked separately. [Read the incident, evidence and verification](docs/LESSONS-LEARNED.md).
+
 ## Project Guides
 
 | Guide | Purpose |
