@@ -24,15 +24,28 @@ The running React shell is a new minimal public reference. It does not copy empl
 
 The platform's production SWA root selects the Free SKU and keeps existing custom-domain bindings/lifecycle under its environment root. The selected publisher uploads website files already built and tested with skip_app_build=true and leaves api_location empty because the business API is separately hosted. This repository performs no hosted publication. [Deployment process](docs/DEPLOYMENT.md).
 
+## Tools Used and What They Do
+
+| Tool or service | What it does | Where it fits |
+| --- | --- | --- |
+| React and TypeScript | Build the website screens and their typed client code. | Actual frontend stack; the included shell is deliberately smaller. |
+| Vite and npm | Build website assets from the recorded dependencies. | Build-time tools; generated assets are different from destination settings. |
+| MSAL and Microsoft Entra ID | Initialize Microsoft sign-in and obtain the intended API access token. | Actual identity integration; server-side authorization remains separate. |
+| Azure Static Web Apps | Host the compiled frontend and its routing/header configuration. | Actual hosting service; static assets do not contain private business records. |
+| GitHub Actions | Build and publish the selected frontend release in the platform. | Public reference validation is manual-only and does not deploy Azure resources. |
+| Python and PowerShell | Inspect packaging/configuration and support operating checks. | Reference and operating utilities, not browser application runtimes. |
+
+The example website does not reproduce every production screen, login path or backend operation. Existing validation records distinguish built assets, hosted behavior and local checks.
+
 ## Step by Step
 
 A short walkthrough of the process, with technical instructions and evidence limits in the sections below.
 
-1. **Build the website** — Select the reviewed React source and build its website files. Test the page behavior and keep the resulting files for release.
+1. **Build the website (React and Vite)** — Select the reviewed React source and build its website files. Test the page behavior and keep the resulting files for release.
 
 2. **Set the destination details** — Provide the public server and Microsoft sign-in settings for the chosen environment. The website checks these settings before starting.
 
-3. **Publish the prepared files** — The platform release process uploads the tested files to Azure Static Web Apps. The business server remains separately hosted and checks its own permissions.
+3. **Publish the prepared files (Static Web Apps)** — The platform release process uploads the tested files to Azure Static Web Apps. The business server remains separately hosted and checks its own permissions.
 
 4. **Verify the user experience** — Check navigation, sign-in settings and useful connection error messages. The public demonstration uses example settings and does not publish a live website.
 
