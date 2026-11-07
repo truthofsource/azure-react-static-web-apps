@@ -2,7 +2,7 @@
 
 **Build the website once, then give each environment its own connection settings.**
 
-[The problem](#the-business-problem) · [The solution](#the-solution) · [What was built](#what-was-built) · [Proof it works](#proof-it-works) · [Commands](docs/COMMANDS.md)
+[The problem](#the-business-problem) · [The solution](#the-solution) · [What was built](#what-was-built) · [Proof it works](#proof-it-works) · [Commands](docs/COMMANDS.md) · [Step by step](#step-by-step)
 
 ![Working React deployment reference](docs/images/01-overview.png)
 
@@ -23,6 +23,18 @@ The project includes actual runtime-configuration validation/loading, MSAL confi
 The running React shell is a new minimal public reference. It does not copy employee/applicant screens or business records. Its default preview validates public example settings without initializing MSAL or contacting an API. Two small browser-validator hardenings are recorded separately from the extracted source. [Source map](docs/SOURCE-MAP.md).
 
 The platform's production SWA root selects the Free SKU and keeps existing custom-domain bindings/lifecycle under its environment root. The selected publisher uploads website files already built and tested with skip_app_build=true and leaves api_location empty because the business API is separately hosted. This repository performs no hosted publication. [Deployment process](docs/DEPLOYMENT.md).
+
+## Step by Step
+
+A short walkthrough of the process, with technical instructions and evidence limits in the sections below.
+
+1. **Build the website** — Select the reviewed React source and build its website files. Test the page behavior and keep the resulting files for release.
+
+2. **Set the destination details** — Provide the public server and Microsoft sign-in settings for the chosen environment. The website checks these settings before starting.
+
+3. **Publish the prepared files** — The platform release process uploads the tested files to Azure Static Web Apps. The business server remains separately hosted and checks its own permissions.
+
+4. **Verify the user experience** — Check navigation, sign-in settings and useful connection error messages. The public demonstration uses example settings and does not publish a live website.
 
 ## Architecture
 
