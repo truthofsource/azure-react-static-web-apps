@@ -8,7 +8,11 @@
 
 ## The Business Problem
 
-The platform needs browser pages for staff and applicants, plus a protected server behind them. A release can upload successfully but still point at the wrong server, fail when someone refreshes a page, or mishandle sign-in. Rebuilding the website for each environment can also introduce differences.
+Applicants need a dependable application form, and staff need browser pages for onboarding, employee records and daily operations. These users experience the website as one service, even though its pages, Microsoft sign-in and backend API have separate settings and deployment lifecycles.
+
+An uploaded website can still open against the wrong backend, fail on a bookmarked page or leave a user stuck after sign-in. Rebuilding the frontend separately for each environment can introduce differences from the version already tested. A technical error with little explanation makes it difficult for users to know whether their work was saved or the service is unavailable.
+
+The business need was a repeatable frontend release with the correct environment connections, reliable page navigation and clear failure messages, while protected decisions remain enforced by the server.
 
 ## The Solution
 
