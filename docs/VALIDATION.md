@@ -1,5 +1,7 @@
 # Validation — November 6, 2026
 
+> Placeholder screenshots were removed on November 15, 2026. Written test results below retain their original dates and scope; historical screenshot references describe earlier captures. Proper Azure and application screenshots are deferred. The illustrated architecture is a source-based explanation, not a live-service screenshot.
+
 The public reference passed local checks. No Azure resource was created or changed, no workflow was dispatched and no live identity/API call was made.
 
 | Check | Observed result |

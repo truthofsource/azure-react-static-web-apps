@@ -1,10 +1,12 @@
 # Deploying a React Frontend with Azure Static Web Apps
 
+[![React frontend and separate API — illustrated overview](docs/diagrams/architecture.png)](docs/diagrams/architecture.svg)
+
+[View SVG](docs/diagrams/architecture.svg) · [Download PNG](docs/diagrams/architecture.png) · [Edit in draw.io](docs/diagrams/architecture.drawio)
+
 **Build the website once, then give each environment its own connection settings.**
 
 [The problem](#the-business-problem) · [The solution](#the-solution) · [What was built](#what-was-built) · [Proof it works](#proof-it-works) · [Commands](docs/COMMANDS.md) · [Step by step](#step-by-step)
-
-![Working React deployment reference](docs/images/01-overview.png)
 
 ## The Business Problem
 
@@ -191,7 +193,7 @@ Capture the page, build settings and deployment run without tokens or private ac
 | Failure boundary | A meaningful denied, malformed, stale or failed case | Not yet recorded |
 | Recovery / cleanup | What you restored or removed and what remains billed | Not yet recorded |
 
-Capture your own architecture/configuration, one working result and one failure/recovery result. Keep tokens, credentials, personal records and private identifiers out of public screenshots. Existing portfolio images are references, not evidence that you performed these steps.
+Capture your own architecture/configuration, one working result and one failure/recovery result. Keep tokens, credentials, personal records and private identifiers out of public screenshots. The architecture diagram explains the design; record your own results rather than treating it as execution evidence.
 
 ### Troubleshooting order
 
@@ -226,18 +228,7 @@ A short walkthrough of the process, with technical instructions and evidence lim
 
 ## Architecture
 
-```mermaid
-flowchart LR
-  Source[React + TypeScript + lockfile] --> Vite[Vite production build]
-  Vite --> Bundle[Selected JS / CSS / index / SWA config]
-  Bundle --> Stage[Validate destination-owned public config]
-  Stage -. separately controlled publication .-> SWA[Azure Static Web Apps]
-  SWA --> Browser[Browser React application]
-  Config[Public runtime JSON] --> Browser
-  Browser -->|MSAL sign-in| Entra[Microsoft Entra ID]
-  Browser -->|Access token + HTTPS| API[Separate Node.js Functions API]
-  API --> Data[(SQL / private storage)]
-```
+[View the illustrated project overview](docs/diagrams/architecture.svg).
 
 Static Web Apps hosts the frontend; it is not the same service as Blob static-website hosting. Vite's development/preview server is not the complete SWA routing, header, domain or authentication platform.
 
@@ -288,8 +279,6 @@ terraform -chdir=infra test
 **Look for:** two tests using simulated cloud responses verify Free SKU, default-Off custom-domain activation and explicit domain/delegation inputs. No Azure resource or DNS change occurs.
 
 ### 4. Visible browser evidence
-
-![Local React configuration checks](docs/images/02-validation.png)
 
 Desktop/mobile, tab navigation, direct deep-link refresh, invalid-config feedback and reload recovery were checked with zero external requests. These images show local React behavior, not a cloud deployment or hosted-header acceptance. [Dated validation](docs/VALIDATION.md).
 
