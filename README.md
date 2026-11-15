@@ -43,7 +43,7 @@ The example website does not reproduce every production screen, login path or ba
 
 ## Step by Step
 
-Build an independent version with the [reader-operated walkthrough](docs/BUILD-YOUR-OWN.md). It gives prerequisites, working locations, numbered actions, source-derived commands, expected results, verification and cleanup.
+Build an independent version with the [step-by-step build guide](docs/BUILD-YOUR-OWN.md). It gives prerequisites, working locations, numbered actions, source-derived commands, expected results, verification and cleanup.
 
 For this project, your working starting point is [`config/nonproduction.example.json`](config/nonproduction.example.json). Expected scope: A built React site and destination-specific configuration, with no live sign-in or publication.
 
