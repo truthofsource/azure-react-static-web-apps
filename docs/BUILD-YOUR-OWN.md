@@ -1,109 +1,165 @@
-# Build your own: Deploying a React Frontend with Azure Static Web Apps
+# Build your own from scratch: Azure React Static Web Apps
 
-This is a step-by-step build guide for an independent learning copy. Follow the numbered steps in order and record your own results. The included local implementation is not a complete deployment of the private business platform; cloud extensions are separate and must use your own authorized resources.
+Your own React page built locally and deployed to a new Azure Static Web App from your own GitHub repository.
 
-## What you will create
+Start with a new folder, your own files and your own accounts. The numbered steps below describe the build; no portfolio repository checkout is required. The existing implementation/evidence elsewhere in this repository is a separate reference, not a claim that your new build has already passed.
 
-A built React site and destination-specific configuration, with no live sign-in or publication.
+## Prerequisites
 
-## Prerequisites and working locations
+A Node version supported by your chosen Vite release; npm; Git; your own GitHub and Azure accounts; permission to create a Static Web App and its deployment workflow.
 
-| Location | What you need |
-| --- | --- |
-| Your workstation | Git and the runtime versions documented in [the command guide](COMMANDS.md); use its package/lockfile instructions. |
-| Bash, Linux or WSL terminal | The commands below use Bash syntax. Prepare Python 3.12 and the compatible Node.js version documented by the project; use the project's pinned dependency files. |
-| PowerShell alternative | Use the PowerShell forms in the command guide, or run this Bash recipe in WSL; do not paste Bash loops into PowerShell. |
-| Azure or external service | Not needed for default local tests. Any cloud extension requires your own account, target, permissions, budget and acceptance plan. |
+Use Bash on Linux/macOS/WSL for Bash blocks and PowerShell for PowerShell blocks. Select the tool versions supported by the official sources below, record the versions you actually install and retain generated dependency locks. Cloud resources, scanner downloads, logs and external AI calls can create costs; review the stated scope before enabling them.
 
-Read [the existing validation scope](VALIDATION.md) before running anything. A recorded historical test result is not evidence that your new copy has passed.
+## Create your project folder
 
-## Step 1: Create your own workspace
-
-**Where:** your workstation, in a new project folder.
-
-1. Clone the public source below into a new directory; keep the source attribution and included license terms. This creates your local learning copy, not cloud resources.
-2. Record the selected commit and tool versions before editing. If you later publish a fork, review any origin, hash or target bindings rather than disabling guards to make the fork pass.
+Choose a new folder name. These first commands create a blank project; an optional `git init` gives it its own history. Create parent directories in your editor when a later step introduces a nested file.
 
 ```bash
-git clone https://github.com/truthofsource/azure-react-static-web-apps.git
-cd azure-react-static-web-apps
-git rev-parse HEAD
-git rev-parse --show-toplevel
-git status --short
+mkdir my-azure-react-static-web-apps
+cd my-azure-react-static-web-apps
+git init
 ```
 
-**Expected result:** the project files are present and you can identify the starting source. Continue from this repository root unless a command explicitly changes directory.
+Create `.gitignore` before saving credentials or build outputs:
 
-## Step 2: Prepare dependencies and build the local baseline
+```gitignore
+.venv/
+node_modules/
+.env
+.env.*
+local.settings.json
+credentials.json
+token.json
+*.pem
+*.key
+*.tfstate*
+*.tfplan
+.terraform/
+private*/
+captures/
+backups/
+batch.json
+reports/
+out/
+app-config.local.yaml
+```
 
-**Where:** the same workstation terminal.
+The source/file snippets are a starting implementation you type or paste into the named files. Replace `YOUR_*`, names, regions and addresses only with values from your own lab; do not place real client/employee records in a test project. Keep your terminal in this project root unless a step explicitly changes directory.
 
-1. Follow the runtime instructions and install only the dependencies selected by this project's files. Terraform provider downloads, optional browser downloads and scanner databases are separate prerequisites where the detailed guide identifies them.
-2. Run these source-derived baseline commands one at a time and stop on an unexpected failure. Read any skipped integration cases; a skip is not a successful live check.
+Before a first commit, set your own repository-local author with `git config user.name "YOUR_NAME"` and `git config user.email "YOUR_PUBLIC_COMMIT_EMAIL"`. Review `git status --short` and the staged diff before publishing; ignored local files are not a substitute for reviewing what you upload.
+
+## Step 1 — Create a new React app
+
+**Where:** A parent folder on your workstation.
+
+Use Vite to scaffold a new app called my-portal, then install its dependencies. Record the resolved tool versions and retain package-lock.json rather than relying on an unrecorded future generator version.
 
 ```bash
-npm ci --prefix frontend --ignore-scripts --no-audit --no-fund
-npm test --prefix frontend
-npm run build --prefix frontend
-python3 -B -m unittest discover -s reference -v
-python3 -B -m unittest discover -s tests -v
+npm create vite@latest my-portal -- --template react
+cd my-portal
+npm install
 ```
 
-**Expected result:** the selected tests finish without unexpected failures, and a demonstration command, where provided, produces fictional local decisions. These commands reproduce the included lab scope; they do not commission the live platform.
+**Check before continuing:** You have a new app with its own source, package.json and dependency lock.
 
-## Step 3: Make one project-specific change
+## Step 2 — Write your own page
 
-**Where:** your editor, in your own local copy.
+**Where:** my-portal/src/App.jsx.
 
-1. Start with [`config/nonproduction.example.json`](../config/nonproduction.example.json) and the matching test or configuration instructions. Copy the example configuration and change its fictional hostname; keep invalid/insecure origin cases rejected.
-2. Save your new case separately from the original acceptance records, then rerun the affected tests and the baseline. Do not edit recorded scanner results, screenshots or validation counts to manufacture a successful outcome.
+Replace the example component with the code below. Start with harmless local content so a deployment or screenshot cannot disclose employee information.
 
-**Expected result:** you can explain what you changed, why the result changed and which negative case still fails safely. An unexpected failure means investigate the implementation or setup, not remove the failing check.
+Create **`src/App.jsx`** with the following contents:
 
-## Step 4: Verify behavior and capture your own evidence
+```jsx
+export default function App() {
+  return <main style={{maxWidth: 760, margin: '3rem auto', padding: '1rem'}}>
+    <h1>My operations portal</h1>
+    <p>A small React site deployed through my own release pipeline.</p>
+    <section><h2>Service status</h2><p>This first build has no live backend.</p></section>
+  </main>;
+}
+```
 
-**Where:** the test output, local viewer where supplied, and your private evidence folder.
+**Check before continuing:** The page displays your own service name and purpose.
 
-1. If the project supplies a viewer, use its startup command in [the command guide](COMMANDS.md); keep long-running preview servers in a separate terminal. Follow its exact loopback address and stop it with Ctrl+C when finished; for a command-line-only example, inspect its terminal output and generated files instead.
-2. Compare your own output with [the proof and limits](../README.md#proof-it-works), then record source version, command, expected result, observed result and unresolved work. Capture screenshots of your own fictional output rather than presenting the existing screenshots as your execution.
+## Step 3 — Test the production build locally
 
-**Expected result:** A built React site and destination-specific configuration, with no live sign-in or publication. Your evidence must say whether it covers local logic, a real tool run, a hosted service or a human observation.
+**Where:** Your app folder.
 
-### Start the local preview
-
-Open a second terminal in the same repository root printed by `git rev-parse --show-toplevel`. Run the command below from that root, after the baseline has passed; it stays running while you use the preview.
+Run the build and preview, then open the URL printed by Vite. Check the browser console and the page on a narrow screen before publishing.
 
 ```bash
-npm run preview --prefix frontend -- --port 4173
+npm run build
+npm run preview
 ```
 
-Open [http://localhost:4173](http://localhost:4173). Use the exact hostname shown here; a localhost address and a 127.0.0.1 address are not interchangeable for every project's host checks.
+**Check before continuing:** dist exists and your production bundle loads without an assumed backend.
 
-This is the project's local Node preview. Run it with the same Node/npm installation used for the baseline; it does not publish the app or require an Azure sign-in.
+## Step 4 — Create your own remote repository
 
-Keep one preview per listening port. Stop your own earlier preview with Ctrl+C before starting another one on that port, or use only a port override documented by the project. If you stop the preview, rerun only its startup command; you do not need to rebuild or redeploy cloud services.
+**Where:** Your app folder and GitHub.
 
-## Step 5: Plan an independent cloud extension, if needed
+Initialize Git, ignore node_modules and local secrets, commit your source and lockfile, and create an empty repository in your own account. Add that repository as origin and push your branch; no existing portfolio checkout is involved.
 
-**Where:** your own architecture/configuration files first; a separately authorized lab subscription only later.
+```bash
+git init
+git add .
+git commit -m "Create my React portal"
+# Create an empty repository in your account, then:
+git branch -M main
+git remote add origin https://github.com/YOUR_ACCOUNT/YOUR_NEW_REPOSITORY.git
+git push -u origin main
+```
 
-1. Read the implementation and infrastructure references linked below. Substitute your own names, identities, address ranges and service settings in an isolated environment; a public reference may contain only selected components and is not authority to apply someone else's production state.
-2. List the missing integrations and acceptance checks before deployment: runtime hosting, permissions, network/DNS paths, secrets, source data, notification or provider access as applicable. Keep disabled examples disabled until their specific dependencies, costs and cleanup are understood.
+**Check before continuing:** Your own repository contains the app you just wrote.
 
-**Expected result:** a scoped extension plan with owners and explicit acceptance criteria, not a claim that the full service is deployed. No cloud `apply`, scanner targeting, paid operation or provider sign-in is implied by the local recipe.
+## Step 5 — Configure Static Web Apps
 
-- [Architecture](ARCHITECTURE.md)
-- [Deployment](DEPLOYMENT.md)
-- [Operations](OPERATIONS.md)
-- [Validation](VALIDATION.md)
-- [Source Map](SOURCE-MAP.md)
-- [Lessons Learned](LESSONS-LEARNED.md)
+**Where:** Azure Portal → Static Web Apps → Create.
 
-## Step 6: Troubleshoot, close out and explain what you built
+Choose your own repository and branch, React preset, app location /, output location dist and no API location for this frontend-only build. Review the plan and generated workflow; its deployment credential belongs in the generated GitHub secret, never in source.
 
-**Where:** your project folder and the operating guide for any environment you actually created.
+**Check before continuing:** The generated workflow builds this app and publishes its dist output.
 
-1. Check the failing stage in order: working directory and runtime, dependencies, test input, configuration, then any separately enabled service. Preserve the error and consult the existing troubleshooting lessons before widening permissions or changing the target.
-2. Stop only the viewers/containers you started, retain your useful evidence and remove only resources belonging to your own reviewed lab. A local-only run needs no cloud deletion; if you created cloud resources, verify residual storage/address/monitoring charges rather than assuming compute stop removes all cost.
+## Step 6 — Verify the hosted page and your update path
 
-**Finish checklist:** explain the business problem, show your own change and verification, describe one failure/recovery case, identify limitations and name the next owner action. Keep credentials and business records out of public commits and screenshots.
+**Where:** Azure Portal deployment URL and GitHub Actions.
+
+Wait for a successful deployment, open the hosted URL and confirm the page content. Change your own heading, commit it and verify a new successful deployment; then configure identity and backend calls as separate, tested additions.
+
+**Check before continuing:** Your own source change reaches the intended hosted page.
+
+## Step 7 — Record and clean up
+
+**Where:** Your evidence folder and Azure Portal.
+
+Capture the page, build settings and deployment run without tokens or private account details. Delete the dedicated Static Web App when finished and account for any separately created domains or backend resources.
+
+**Check before continuing:** The build and publication steps can be followed by someone with their own accounts.
+
+## Verification and your own screenshots
+
+| Evidence | What to record | Your result |
+| --- | --- | --- |
+| New build | Your own files/resource settings and tool versions | Not yet recorded |
+| Working path | The actual successful request, configuration or recovery result | Not yet recorded |
+| Failure boundary | A meaningful denied, malformed, stale or failed case | Not yet recorded |
+| Recovery / cleanup | What you restored or removed and what remains billed | Not yet recorded |
+
+Capture your own architecture/configuration, one working result and one failure/recovery result. Keep tokens, credentials, personal records and private identifiers out of public screenshots. Existing portfolio images are references, not evidence that you performed these steps.
+
+## Troubleshooting order
+
+1. Confirm the named file, working directory and selected tool/interpreter.
+2. Check the exact input and resource/account selected for the failing step.
+3. Separate identity permission, network/DNS reachability and application validation.
+4. Keep the actual error and reconcile an unknown write outcome before repeating it; do not widen access or repeat paid operations blindly.
+
+The numbered steps describe a build procedure. Local syntax checks, an accepted API request, a completed hosted operation and a human verification are different evidence levels; fill in the verification table with what you actually observed.
+
+## Official implementation references
+
+- [learn.microsoft.com — getting-started](https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started)
+- [vite.dev — guide](https://vite.dev/guide/)
+
+The walkthrough layout follows the prerequisites → creation/configuration → test → verification → troubleshooting → cleanup pattern of the [Splunk project reference](https://github.com/davidharris6/splunk-siem-log-analysis). Its Splunk-specific settings are not copied into unrelated projects.
