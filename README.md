@@ -43,6 +43,19 @@ The example website does not reproduce every production screen, login path or ba
 
 ## Step by Step
 
+Build an independent version with the [reader-operated walkthrough](docs/BUILD-YOUR-OWN.md). It gives prerequisites, working locations, numbered actions, source-derived commands, expected results, verification and cleanup.
+
+For this project, your working starting point is [`config/nonproduction.example.json`](config/nonproduction.example.json). Expected scope: A built React site and destination-specific configuration, with no live sign-in or publication.
+
+1. **Create your own workspace.** Copy the project and record the source version before editing.
+2. **Prepare and run the baseline.** Use the documented runtimes and selected dependencies, then run the local checks.
+3. **Make your own change.** Edit a project-specific fixture, configuration or rule and rerun its positive and negative cases.
+4. **Verify and document your result.** Capture your own evidence and distinguish a local example from a live integration.
+5. **Extend and close out deliberately.** Plan any independent cloud work separately and clean up only what you created.
+
+<details>
+<summary>How the underlying platform process works</summary>
+
 A short walkthrough of the process, with technical instructions and evidence limits in the sections below.
 
 1. **Build the website (React and Vite)** — Select the reviewed React source and build its website files. Test the page behavior and keep the resulting files for release.
@@ -52,6 +65,8 @@ A short walkthrough of the process, with technical instructions and evidence lim
 3. **Publish the prepared files (Static Web Apps)** — The platform release process uploads the tested files to Azure Static Web Apps. The business server remains separately hosted and checks its own permissions.
 
 4. **Verify the user experience** — Check navigation, sign-in settings and useful connection error messages. The public demonstration uses example settings and does not publish a live website.
+
+</details>
 
 ## Architecture
 
